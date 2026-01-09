@@ -10,8 +10,8 @@ const siteFont = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-    title: 'Solana Attestation Service',
-    description: 'SAS',
+    title: 'Trezoa Attestation Service',
+    description: 'TAS',
     openGraph: {
         images: '/og.png',
     },

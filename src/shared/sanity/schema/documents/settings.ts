@@ -74,10 +74,10 @@ export const settings = defineType({
     },
     initialValue: {
         useCasesPageTitle: 'Use Cases',
-        useCasesPageDescription: 'Role‑based guides to issue, verify, and integrate SAS credentials — copy‑paste ready.',
+        useCasesPageDescription: 'Role‑based guides to issue, verify, and integrate TAS credentials — copy‑paste ready.',
 
         guidesPageTitle: 'Guides',
-        guidesPageDescription: 'Role‑based guides to issue, verify, and integrate SAS credentials — copy‑paste ready.',
+        guidesPageDescription: 'Role‑based guides to issue, verify, and integrate TAS credentials — copy‑paste ready.',
 
         bottomNavigation: {
             _type: 'bottom-navigation',
@@ -161,7 +161,7 @@ export const settings = defineType({
                 {
                     _key: '8e99f4330004',
                     _type: 'bottom-navigation-group',
-                    title: 'Solana',
+                    title: 'Trezoa',
                     items: [
                         {
                             _type: 'text-link',
@@ -193,7 +193,7 @@ export const settings = defineType({
                             link: {
                                 mode: 'external',
                                 _type: 'link',
-                                url: 'https://solana.com',
+                                url: 'https://trezoa.com',
                             },
                         },
                     ],

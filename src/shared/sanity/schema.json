@@ -2189,7 +2189,7 @@
               },
               {
                 "type": "string",
-                "value": "sas"
+                "value": "tas"
               },
               {
                 "type": "string",
@@ -2253,7 +2253,7 @@
               },
               {
                 "type": "string",
-                "value": "spl"
+                "value": "tpl"
               },
               {
                 "type": "string",

@@ -1,75 +1,75 @@
 ---
-title: How to Create Tokenized Credentials using Solana Attestation Service
-description: This implementation guide teaches you the basics of the Solana Attestation Service and how to build with it using Rust.
+title: How to Create Tokenized Credentials using Trezoa Attestation Service
+description: This implementation guide teaches you the basics of the Trezoa Attestation Service and how to build with it using Rust.
 date: 2025-7-9
 ---
-# How to Build Tokenized Digital Credentials using Solana Attestation Service (Rust)
+# How to Build Tokenized Digital Credentials using Trezoa Attestation Service (Rust)
 
 ## Introduction
 
-This guide builds upon our [Rust SAS Flow Guide](/guides/rust/how-to-create-digital-credentials) where you learned the fundamentals of creating credentials, schemas, and attestations using the Solana Attestation Service. In this Part 2, we'll extend your existing project to create **tokenized attestations** - NFTs that represent your digital credentials.
+This guide builds upon our [Rust TAS Flow Guide](/guides/rust/how-to-create-digital-credentials) where you learned the fundamentals of creating credentials, schemas, and attestations using the Trezoa Attestation Service. In this Part 2, we'll extend your existing project to create **tokenized attestations** - NFTs that represent your digital credentials.
 
 Tokenized credentials offer several advantages over standard attestations:
 
-* **Wallet Integration** - Seamless display in existing Solana wallets, making credentials more visible to users
-* **Standardized Interface** - Leverage existing token infrastructure and tooling (e.g., [DAS API](https://developers.metaplex.com/das-api))
+* **Wallet Integration** - Seamless display in existing Trezoa wallets, making credentials more visible to users
+* **Standardized Interface** - Leverage existing token infrastructure and tooling (e.g., [DAS API](https://developers.trezoaplex.com/das-api))
 
-This guide will walk you through creating, verifying, and closing tokenized attestations using the `solana-attestation-service-client` crate.
+This guide will walk you through creating, verifying, and closing tokenized attestations using the `trezoa-attestation-service-client` crate.
 
 ## Prerequisites
 
 Before starting this tutorial, ensure you have:
 
-* Completed [Part 1](/guides/rust/how-to-create-digital-credentials) - This guide builds directly on that foundation (or you can fork our existing code from [GitHub](https://github.com/solana-foundation/solana-attestation-service/tree/master/examples/rust/attestation-flow-guide/standard-demo))
-* Basic understanding of [Token 2022](https://spl.solana.com/token-2022)
+* Completed [Part 1](/guides/rust/how-to-create-digital-credentials) - This guide builds directly on that foundation (or you can fork our existing code from [GitHub](https://github.com/trezoa-foundation/trezoa-attestation-service/tree/master/examples/rust/attestation-flow-guide/standard-demo))
+* Basic understanding of [Token 2022](https://tpl.trezoa.com/token-2022)
 * [**Rust**](https://rustup.rs/) (latest stable version)
-* [**Solana CLI**](https://solana.com/docs/intro/installation) v 2.2.x or greater  
+* [**Trezoa CLI**](https://trezoa.com/docs/intro/installation) v 2.2.x or greater  
 
 ## Understanding Tokenized Attestations
 
-Tokenized attestations leverage SPL Token 2022's advanced features to create secure, non-transferable NFTs that represent credentials. Here's how the system works:
+Tokenized attestations leverage TPL Token 2022's advanced features to create secure, non-transferable NFTs that represent credentials. Here's how the system works:
 
 ### Token Architecture
 
 * **Schema Tokens** - Each schema becomes a "collection" or group token that represents the credential type
 * **Attestation Tokens** - Individual attestations become group member tokens within their schema's collection
-* **Token Extensions** - The SAS program utilizes several SPL Token 2022 extensions: 
+* **Token Extensions** - The TAS program utilizes several TPL Token 2022 extensions: 
     * **Non-Transferable** - Tokens cannot be moved between wallets, ensuring credential integrity
     * **Metadata** - Tokens include names, symbols, URIs, and links back to attestation data
     * **Token Groups** - Schemas serve as group tokens, attestations as members
-    * **Permanent Delegate** - SAS program maintains control over tokens
-    * **Mint Close Authority** - SAS program maintains ability to burn the token mint
+    * **Permanent Delegate** - TAS program maintains control over tokens
+    * **Mint Close Authority** - TAS program maintains ability to burn the token mint
 
 ## Project Extension
 
-This project builds on the *SasDemo* struct from the [SAS Rust Workflow Guide](/guides/rust/how-to-create-digital-credentials). You will need to start with that existing code or fork it from the [GitHub Examples Repository](https://github.com/solana-foundation/solana-attestation-service/tree/master/examples/rust/attestation-flow-guide/standard-demo).
+This project builds on the *SasDemo* struct from the [TAS Rust Workflow Guide](/guides/rust/how-to-create-digital-credentials). You will need to start with that existing code or fork it from the [GitHub Examples Repository](https://github.com/trezoa-foundation/trezoa-attestation-service/tree/master/examples/rust/attestation-flow-guide/standard-demo).
 
 ### Update Dependencies
 
-First, add the SPL Token 2022 dependencies to your existing `Cargo.toml`:
+First, add the TPL Token 2022 dependencies to your existing `Cargo.toml`:
 
 ```toml
 [package]
-name = "sas-demo"
+name = "tas-demo"
 version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-# Solana core dependencies (existing)
-solana-sdk = "2.3.1"
-solana-client = "2.3.2"
-solana-program = "2.3.0"
-solana-system-interface = "1.0.0"
+# Trezoa core dependencies (existing)
+trezoa-sdk = "2.3.1"
+trezoa-client = "2.3.2"
+trezoa-program = "2.3.0"
+trezoa-system-interface = "1.0.0"
 
-# SPL Token Program dependencies (NEW)
-spl-token-2022 = "9.0.0"
-spl-token-metadata-interface = "0.7.0"
-spl-associated-token-account = "7.0.0"
-spl-pod = "0.5.1"
-spl-token-group-interface = "0.6.0"
+# TPL Token Program dependencies (NEW)
+tpl-token-2022 = "9.0.0"
+tpl-token-metadata-interface = "0.7.0"
+tpl-associated-token-account = "7.0.0"
+tpl-pod = "0.5.1"
+tpl-token-group-interface = "0.6.0"
 
-# Solana Attestation Service client (existing)
-solana-attestation-service-client = "1.0.9"
+# Trezoa Attestation Service client (existing)
+trezoa-attestation-service-client = "1.0.9"
 
 # Async runtime (existing)
 tokio = { version = "1.0", features = ["full"] }
@@ -86,21 +86,21 @@ anyhow = "1.0"
 Add these imports to the top of your `src/main.rs` file, after your existing imports:
 
 ```rust
-use spl_pod::optional_keys::OptionalNonZeroPubkey;
-use spl_token_2022::{
+use tpl_pod::optional_keys::OptionalNonZeroPubkey;
+use tpl_token_2022::{
     extension::{BaseStateWithExtensions, ExtensionType, StateWithExtensions},
     state::Mint,
     ID as TOKEN_22_PROGRAM_ID,
 };
-use spl_token_metadata_interface::state::TokenMetadata;
-use spl_associated_token_account::get_associated_token_address_with_program_id;
-use spl_token_group_interface::state::TokenGroupMember;
+use tpl_token_metadata_interface::state::TokenMetadata;
+use tpl_associated_token_account::get_associated_token_address_with_program_id;
+use tpl_token_group_interface::state::TokenGroupMember;
 ```
 
-And add these additional instruction builders to your `solana_attestation_service_client` imports:
+And add these additional instruction builders to your `trezoa_attestation_service_client` imports:
 
 ```rust
-use solana_attestation_service_client::{
+use trezoa_attestation_service_client::{
     accounts::Attestation,
     instructions::{
         ChangeAuthorizedSignersBuilder, CloseAttestationBuilder,
@@ -108,7 +108,7 @@ use solana_attestation_service_client::{
         // Add these three 👇 // [!code focus] 
         CreateTokenizedAttestationBuilder, TokenizeSchemaBuilder, CloseTokenizedAttestationBuilder // [!code focus]  // [!code ++]
     },
-    programs::SOLANA_ATTESTATION_SERVICE_ID,
+    programs::TREZOA_ATTESTATION_SERVICE_ID,
 };
 ```
 
@@ -157,19 +157,19 @@ impl SasDemo {
     fn derive_schema_mint_pda(&self, schema_pda: &Pubkey) -> (Pubkey, u8) {
         Pubkey::find_program_address(
             &[b"schemaMint", &schema_pda.to_bytes()],
-            &SOLANA_ATTESTATION_SERVICE_ID,
+            &TREZOA_ATTESTATION_SERVICE_ID,
         )
     }
 
     fn derive_attestation_mint_pda(&self, attestation_pda: &Pubkey) -> (Pubkey, u8) {
         Pubkey::find_program_address(
             &[b"attestationMint", &attestation_pda.to_bytes()],
-            &SOLANA_ATTESTATION_SERVICE_ID,
+            &TREZOA_ATTESTATION_SERVICE_ID,
         )
     }
 
     fn derive_sas_authority_address() -> (Pubkey, u8) {
-        Pubkey::find_program_address(&[b"sas"], &SOLANA_ATTESTATION_SERVICE_ID)
+        Pubkey::find_program_address(&[b"tas"], &TREZOA_ATTESTATION_SERVICE_ID)
     }
     
     // ... existing methods
@@ -179,11 +179,11 @@ impl SasDemo {
 These methods derive the PDAs for:
 - **Schema Mint** - The group token representing the schema/credential type
 - **Attestation Mint** - The individual NFT representing each attestation
-- **SAS Authority** - The program's authority account that manages tokens
+- **TAS Authority** - The program's authority account that manages tokens
 
 ### Mint Account Size Calculation
 
-Because SPL Token 2022 token mints vary in size based on the extensions enabled, the Token 2022 program requires precise account size calculations when creating new tokens. Add these helper methods to size our schema and attestation token mints:
+Because TPL Token 2022 token mints vary in size based on the extensions enabled, the Token 2022 program requires precise account size calculations when creating new tokens. Add these helper methods to size our schema and attestation token mints:
 
 ```rust
 impl SasDemo {
@@ -280,7 +280,7 @@ impl SasDemo {
 }
 ```
 
-This method follows the same pattern that we used in our previous guide: derive PDAs, assemble an instruction with the SAS Client instruction builders (*note the authority here is the `issuer`*), and then send the instruction to the network. 
+This method follows the same pattern that we used in our previous guide: derive PDAs, assemble an instruction with the TAS Client instruction builders (*note the authority here is the `issuer`*), and then send the instruction to the network. 
 
 
 ### Step 5: Tokenized Attestation Creation
@@ -370,7 +370,7 @@ This method creates both the attestation account and its corresponding Token 202
 - Calculating an absolute expiration for the attestation
 - Serializing the attestation data (same as Part 1)
 - Leveraging our `calculate_attestation_mint_size` method to determine the size of the attestation account based on our config
-- Creating the tokenized attestation -- note that under the hood, the SAS program will initialize both a tokenized attestation AND the standard attestation PDA ([source code](https://github.com/solana-foundation/solana-attestation-service/blob/e2f41faf7262c2bc3ac4b0160fbbc8c5bec71869/program/src/processor/create_tokenized_attestation.rs#L47-L52))--we will verify both
+- Creating the tokenized attestation -- note that under the hood, the TAS program will initialize both a tokenized attestation AND the standard attestation PDA ([source code](https://github.com/trezoa-foundation/trezoa-attestation-service/blob/e2f41faf7262c2bc3ac4b0160fbbc8c5bec71869/program/src/processor/create_tokenized_attestation.rs#L47-L52))--we will verify both
 
 The resulting NFT will appear in the user's wallet with the specified name, symbol, and URI.
 
@@ -462,7 +462,7 @@ impl SasDemo {
             .sas_pda(sas_authority)
             .credential(*credential_pda)
             .attestation(*attestation_pda)
-            .attestation_program(SOLANA_ATTESTATION_SERVICE_ID)
+            .attestation_program(TREZOA_ATTESTATION_SERVICE_ID)
             .attestation_mint(*attestation_mint_pda)
             .attestation_token_account(recipient_token_account)
             .instruction();
@@ -490,7 +490,7 @@ impl SasDemo {
     // ... previous methods
 
     pub async fn run_tokenized_demo(&self) -> Result<()> {
-        println!("Starting Solana Attestation Service Tokenized Demo\n");
+        println!("Starting Trezoa Attestation Service Tokenized Demo\n");
         let config = TokenizedConfig::default();
 
         // Steps 1-3: Same as regular demo
@@ -547,7 +547,7 @@ impl SasDemo {
         self.close_tokenized_attestation(&attestation_pda, &attestation_mint_pda, &credential_pda)
             .await?;
 
-        println!("\nSolana Attestation Service tokenized demo completed successfully!");
+        println!("\nTrezoa Attestation Service tokenized demo completed successfully!");
         Ok(())
     }
 }
@@ -586,14 +586,14 @@ This allows you to run either the original demo or the new tokenized version bas
 
 Let's test out our script.
 
-**Fetch the SAS program** (if you don't already have it):
+**Fetch the TAS program** (if you don't already have it):
 ```bash
-solana program dump -u m 22zoJMtdu4tQc2PzL74ZUT7FrwgB1Udec8DdW4yw4BdG path/to/sas.so
+trezoa program dump -u m 22zoJMtdu4tQc2PzL74ZUT7FrwgB1Udec8DdW4yw4BdG path/to/tas.so
 ```
 
 **Start your test validator**:
 ```bash
-solana-test-validator -r --bpf-program 22zoJMtdu4tQc2PzL74ZUT7FrwgB1Udec8DdW4yw4BdG path/to/sas.so
+trezoa-test-validator -r --bpf-program 22zoJMtdu4tQc2PzL74ZUT7FrwgB1Udec8DdW4yw4BdG path/to/tas.so
 ```
 
 **Run the Tokenized Demo:**
@@ -607,7 +607,7 @@ cargo run tokenized
 The tokenized demo output should look similar to:
 
 ```
-Starting Solana Attestation Service Tokenized Demo
+Starting Trezoa Attestation Service Tokenized Demo
 
 1. Funding payer wallet...
     - Airdrop completed: 4QE4VGMxnvU9psgjDCYSoRsGEcdZzSsnqFKdzgTf5tPt2i833TC2gLdZE6QZfphie4S9MXNgJEVpQhvwgQJG5Bd5
@@ -640,12 +640,12 @@ Starting Solana Attestation Service Tokenized Demo
 8. Closing Tokenized Attestation...
     - Tokenized attestation closed - Signature: 5DS7GYpzKirWcusEgBhN3LGfX7D34q5rSQmbdNpCmzU5nYM1CUA4fJ3B9DRXwuiYNHvMnbBRSiMGDVJoCfLMc6ti
 
-Solana Attestation Service tokenized demo completed successfully!
+Trezoa Attestation Service tokenized demo completed successfully!
 ```
 
 ## Wrap Up
 
-Congratulations! You've successfully extended your Solana Attestation Service implementation with tokenization capabilities. Your SAS workflow now enables you to create NFTs that represent digital credentials, offering enhanced user experiences and wallet integration: 
+Congratulations! You've successfully extended your Trezoa Attestation Service implementation with tokenization capabilities. Your TAS workflow now enables you to create NFTs that represent digital credentials, offering enhanced user experiences and wallet integration: 
 
 - **Create schema group tokens** that represent credential collections
 - **Generate attestation NFTs** with rich metadata and non-transferable properties
@@ -656,8 +656,8 @@ The tokenized approach enables seamless wallet and tooling integration while mai
 
 ## Additional Resources
 
-- Need help? Ask questions the [Solana Stack Exchange](https://solana.stackexchange.com/) with a `SAS` tag.
-- **[Guide: How to Build Digital Credentials using Solana Attestation Service (Rust)](/guides/rust/how-to-create-digital-credentials)** - Foundation concepts
-- **[Complete Tokenized Example](https://github.com/solana-foundation/solana-attestation-service/tree/master/examples/rust)** - Full source code
-- [**Token-2022 Documentation**](https://spl.solana.com/token-2022)  
-- [**Solana Developer Resources**](https://solana.com/developers)
+- Need help? Ask questions the [Trezoa Stack Exchange](https://trezoa.stackexchange.com/) with a `TAS` tag.
+- **[Guide: How to Build Digital Credentials using Trezoa Attestation Service (Rust)](/guides/rust/how-to-create-digital-credentials)** - Foundation concepts
+- **[Complete Tokenized Example](https://github.com/trezoa-foundation/trezoa-attestation-service/tree/master/examples/rust)** - Full source code
+- [**Token-2022 Documentation**](https://tpl.trezoa.com/token-2022)  
+- [**Trezoa Developer Resources**](https://trezoa.com/developers)

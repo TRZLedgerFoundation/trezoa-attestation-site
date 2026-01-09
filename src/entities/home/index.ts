@@ -1,7 +1,7 @@
 export { fetchHome } from './model/home-query'
 export { Hero } from './ui/hero'
 export { Using } from './ui/using'
-export { HowSasWorks } from './ui/how-sas-works'
+export { HowTasWorks } from './ui/how-tas-works'
 export { UseCases } from './ui/use-cases'
 export { Quote } from './ui/quote'
 export { HowToImplement } from './ui/how-to-implement'

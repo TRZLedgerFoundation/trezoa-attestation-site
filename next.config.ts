@@ -9,9 +9,9 @@ const nextConfig: NextConfig = {
 
     async rewrites() {
         const docsBaseUrl = process.env.ENVIRONMENT === 'production'
-            ? 'https://solana-attestation-site-docs.vercel.app'
+            ? 'https://trezoa-attestation-site-docs.vercel.app'
             : process.env.ENVIRONMENT === 'development'
-                ? 'https://solana-attestation-site-docs-dev.vercel.app'
+                ? 'https://trezoa-attestation-site-docs-dev.vercel.app'
                 : 'http://localhost:5173'
 
         return {

@@ -1,16 +1,16 @@
-# Solana Attestation Website
+# Trezoa Attestation Website
 
-This is a Next.js-based website that describes attestation services available on the Solana blockchain.
+This is a Next.js-based website that describes attestation services available on the Trezoa blockchain.
 
 ### Important Links
 
-- **Production Site**: [https://solana-attestation-site.vercel.app](https://solana-attestation-site.vercel.app)
+- **Production Site**: [https://trezoa-attestation-site.vercel.app](https://trezoa-attestation-site.vercel.app)
 - **Production CMS**: [https://attest.sanity.studio](https://attest.sanity.studio)
-- **Production Docs**: [https://solana-attestation-site.vercel.app/docs](https://solana-attestation-site.vercel.app/docs)
+- **Production Docs**: [https://trezoa-attestation-site.vercel.app/docs](https://trezoa-attestation-site.vercel.app/docs)
 
 - **Dev CMS**: [https://attest-dev.sanity.studio](https://attest-dev.sanity.studio)
-- **Dev Site**: [https://solana-attestation-site-dev.vercel.app](https://solana-attestation-site-dev.vercel.app)
-- **Dev Docs**: [https://solana-attestation-site-dev.vercel.app/docs](https://solana-attestation-site-dev.vercel.app/docs)
+- **Dev Site**: [https://trezoa-attestation-site-dev.vercel.app](https://trezoa-attestation-site-dev.vercel.app)
+- **Dev Docs**: [https://trezoa-attestation-site-dev.vercel.app/docs](https://trezoa-attestation-site-dev.vercel.app/docs)
 
 ## Project Structure
 

@@ -10,7 +10,7 @@ export const NotFound: NextPage = () => (
             subTitle={
                 <>
                     Our over‑caffeinated intern tried to stake this URL and, well… it got slashed. Hop back to the <Link href="/">homepage</Link> to learn about
-                    Solana Attestation Service, or wander footer links.
+                    Trezoa Attestation Service, or wander footer links.
                 </>
             }
         />

@@ -10,7 +10,7 @@ const singletonDocuments = ['home', 'settings']
 
 export default defineConfig({
     name: 'default',
-    title: 'Solana SAS',
+    title: 'Trezoa TAS',
 
     projectId,
     dataset,

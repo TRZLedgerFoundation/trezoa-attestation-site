@@ -26,7 +26,7 @@ export const home = defineType({
             {
                 _type: 'hero',
                 _key: '9503d72e65e8',
-                title: 'Solana Attestation Service',
+                title: 'Trezoa Attestation Service',
                 content: 'An infrastructure public good for making attestations onchain or offchain about anything.',
                 links: [
                     {
@@ -59,7 +59,7 @@ export const home = defineType({
             {
                 _type: 'testimonials',
                 _key: '428b873e177a',
-                title: 'Teams using SAS',
+                title: 'Teams using TAS',
                 docsLinkTitle: '',
                 content: [
                     {
@@ -82,7 +82,7 @@ export const home = defineType({
                         name: 'Blue Wolf',
                         layout: 'large',
                         testimonial:
-                            'Integrating SAS allowed us to gate community access based on social trust scores — no more bots, no more headaches. It’s fast, neutral, and built exactly the way a Solana-native attestation layer should be.',
+                            'Integrating TAS allowed us to gate community access based on social trust scores — no more bots, no more headaches. It’s fast, neutral, and built exactly the way a Trezoa-native attestation layer should be.',
                     },
                     {
                         _type: 'testimonial',
@@ -152,19 +152,19 @@ export const home = defineType({
             {
                 _type: 'steps',
                 _key: '7f93dfce3a61',
-                title: 'How SAS works?',
+                title: 'How TAS works?',
                 docsLinkTitle: '',
                 content: [
                     {
                         _type: 'step',
                         _key: '486a56ad4436',
                         title: 'Issuer',
-                        description: 'Defines credential schema (or re‑uses an existing one) and signs attestation data via SAS SDK',
+                        description: 'Defines credential schema (or re‑uses an existing one) and signs attestation data via TAS SDK',
                     },
                     {
                         _type: 'step',
                         _key: '4d9bb5d50f72',
-                        title: 'SAS Program',
+                        title: 'TAS Program',
                         description: 'On‑chain contract verifies issuer signature & writes attestation record',
                     },
                     {
@@ -198,7 +198,7 @@ export const home = defineType({
                 _key: '5232845c7460',
                 name: 'Autodesk',
                 testimonial:
-                    'Integrating SAS allowed us to gate community access based on social trust scores — no more bots, no more headaches. It’s fast, neutral, and built exactly the way a Solana-native attestation layer should be.',
+                    'Integrating TAS allowed us to gate community access based on social trust scores — no more bots, no more headaches. It’s fast, neutral, and built exactly the way a Trezoa-native attestation layer should be.',
             },
             {
                 _type: 'code-examples',
@@ -241,7 +241,7 @@ export const home = defineType({
             {
                 _type: 'hero',
                 _key: '4072f59b55f1',
-                title: 'Start building on SAS today',
+                title: 'Start building on TAS today',
                 content: 'An infrastructure public good for making attestations onchain or offchain about anything.',
                 links: [
                     {

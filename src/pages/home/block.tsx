@@ -1,6 +1,6 @@
 import { Guides, isGuidesBlock } from '@/entities/home/ui/guides'
 import { Hero, isHeroBlock } from '@/entities/home/ui/hero'
-import { HowSasWorks, isHowSasWorksBlock } from '@/entities/home/ui/how-sas-works'
+import { HowTasWorks, isHowTasWorksBlock } from '@/entities/home/ui/how-tas-works'
 import { HowToImplement, isHowToImplementBlock } from '@/entities/home/ui/how-to-implement'
 import { Quote, isQuoteBlock } from '@/entities/home/ui/quote'
 import { UseCases, isUseCasesBlock } from '@/entities/home/ui/use-cases'
@@ -16,7 +16,7 @@ type BlockProps = {
 export const Block: FC<BlockProps> = ({ content }) => {
     if (isHeroBlock(content)) return <Hero content={content} />
     if (isUsingBlock(content)) return <Using content={content} />
-    if (isHowSasWorksBlock(content)) return <HowSasWorks content={content} />
+    if (isHowTasWorksBlock(content)) return <HowTasWorks content={content} />
     if (isQuoteBlock(content)) return <Quote content={content} />
     if (isHowToImplementBlock(content)) return <HowToImplement content={content} />
     if (isUseCasesBlock(content)) return <UseCases content={content} />

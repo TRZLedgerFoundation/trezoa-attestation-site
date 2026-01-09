@@ -1,8 +1,8 @@
 import { defineConfig } from 'vocs'
 
 export default defineConfig({
-    title: 'Solana Attestation Service',
-    description: 'Documentation for the Solana Attestation Service',
+    title: 'Trezoa Attestation Service',
+    description: 'Documentation for the Trezoa Attestation Service',
     basePath: '/docs',
     font: {
         default: {
@@ -49,7 +49,7 @@ export default defineConfig({
     socials: [
         {
             icon: 'github',
-            link: 'https://github.com/solana-foundation/solana-attestation-service',
+            link: 'https://github.com/trezoa-foundation/trezoa-attestation-service',
         },
     ],
     sidebar: [
@@ -147,7 +147,7 @@ export default defineConfig({
         },
         {
             text: "Code Examples",
-            link: "https://github.com/solana-foundation/solana-attestation-service/tree/master/examples/"
+            link: "https://github.com/trezoa-foundation/trezoa-attestation-service/tree/master/examples/"
         }
     ],
 })

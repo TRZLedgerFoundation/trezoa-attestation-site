@@ -38,7 +38,7 @@ export const steps = defineType({
             type: 'string',
             title: 'Title',
             description: 'Section title',
-            placeholder: 'e.g. "How SAS works?"',
+            placeholder: 'e.g. "How TAS works?"',
             initialValue: '',
             validation: rule => [rule.required(), rule.max(120)],
         }),

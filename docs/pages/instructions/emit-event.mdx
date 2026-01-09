@@ -1,13 +1,13 @@
 # Emit Event
 
-Emits an event from the Solana Attestation Service program. This instruction allows the program to emit events that can be listened to by external applications for tracking attestation-related activities.
+Emits an event from the Trezoa Attestation Service program. This instruction allows the program to emit events that can be listened to by external applications for tracking attestation-related activities.
 
 ## Parameters
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
 | `eventAuthority` | `Signer` | The program-derived address used as the event authority |
-| `attestationProgram` | `PublicKey \| Pda` | The Solana Attestation Service program address |
+| `attestationProgram` | `PublicKey \| Pda` | The Trezoa Attestation Service program address |
 
 ## Returns
 
@@ -16,7 +16,7 @@ Returns a `TransactionBuilder` that can be used to build and send the transactio
 ## Example
 
 ```typescript
-import { getEmitEventInstruction } from "sas-lib";
+import { getEmitEventInstruction } from "tas-lib";
 
 const transaction = getEmitEventInstruction({
     eventAuthority: eventAuthoritySigner,

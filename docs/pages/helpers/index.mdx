@@ -1,6 +1,6 @@
 # PDA Helpers
 
-The Solana Attestation Service uses Program Derived Addresses (PDAs) for various purposes. This guide explains the available helper functions for deriving these addresses.
+The Trezoa Attestation Service uses Program Derived Addresses (PDAs) for various purposes. This guide explains the available helper functions for deriving these addresses.
 
 ## Available Seeds
 
@@ -9,7 +9,7 @@ The following seeds are used in the system:
 - `CREDENTIAL_SEED`: Used for credential accounts
 - `SCHEMA_SEED`: Used for schema accounts
 - `EVENT_AUTHORITY_SEED`: Used for the event authority
-- `SAS_SEED`: Used for the SAS authority
+- `TAS_SEED`: Used for the TAS authority
 - `SCHEMA_MINT_SEED`: Used for schema token mints
 - `ATTESTATION_MINT_SEED`: Used for attestation token mints
 
@@ -23,13 +23,13 @@ const deriveEventAuthorityAddress = async (): Promise<Address<string>>
 
 Derives the address of the event authority PDA. This address is used to sign events emitted by the program.
 
-### SAS Authority
+### TAS Authority
 
 ```typescript
 const deriveSasAuthorityAddress = async (): Promise<Address<string>>
 ```
 
-Derives the address of the SAS authority PDA. This address is used for program signing authority.
+Derives the address of the TAS authority PDA. This address is used for program signing authority.
 
 ### Credential PDA
 

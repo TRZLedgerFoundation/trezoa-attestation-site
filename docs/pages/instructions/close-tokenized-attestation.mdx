@@ -25,7 +25,7 @@ Returns a `TransactionBuilder` that can be used to build and send the transactio
 ## Example
 
 ```typescript
-import { getCloseTokenizedAttestationInstruction } from "sas-lib";
+import { getCloseTokenizedAttestationInstruction } from "tas-lib";
 
 const transaction = getCloseTokenizedAttestationInstruction({
     payer: payerSigner,
@@ -57,11 +57,11 @@ await transaction.sendAndConfirm();
 - The attestation's data and associated tokens will be permanently removed
 - The token account must be empty (all tokens burned) before closing
 - The event authority is used to emit events about the attestation closure
-- The SAS PDA is used to sign token operations on behalf of the program
+- The TAS PDA is used to sign token operations on behalf of the program
 
 ## Related
 
 - [Attestations Documentation](/attestations)
 - [Credentials Documentation](/credentials)
-- [System Program Documentation](https://docs.solana.com/developing/runtime-facilities/programs#system-program)
-- [Token Program Documentation](https://spl.solana.com/token) 
+- [System Program Documentation](https://docs.trezoa.com/developing/runtime-facilities/programs#system-program)
+- [Token Program Documentation](https://tpl.trezoa.com/token) 
