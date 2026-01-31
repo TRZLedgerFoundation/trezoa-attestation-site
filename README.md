@@ -12,9 +12,9 @@ This is a Next.js-based website that describes attestation services available on
 - **Dev Site**: [https://trezoa-attestation-site-dev.vercel.app](https://trezoa-attestation-site-dev.vercel.app)
 - **Dev Docs**: [https://trezoa-attestation-site-dev.vercel.app/docs](https://trezoa-attestation-site-dev.vercel.app/docs)
 
-## Project Structure
+## Trezoa Structure
 
-The project follows the Feature-Sliced Design (FSD) architecture with the following high-level structure:
+The trezoa follows the Feature-Sliced Design (FSD) architecture with the following high-level structure:
 
 ```
 app/                # Next.js app router
@@ -40,7 +40,7 @@ src/
 
 ## Branching Strategy
 
-The project follows a two-branch strategy for managing deployments:
+The trezoa follows a two-branch strategy for managing deployments:
 
 - **`main`**: Production branch, deployed to the production environment
 - **`development`**: Staging branch, used for pre-production testing

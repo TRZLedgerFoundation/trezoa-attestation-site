@@ -7,7 +7,7 @@ date: 2025-7-9
 
 ## Introduction
 
-This guide builds upon our [Rust TAS Flow Guide](/guides/rust/how-to-create-digital-credentials) where you learned the fundamentals of creating credentials, schemas, and attestations using the Trezoa Attestation Service. In this Part 2, we'll extend your existing project to create **tokenized attestations** - NFTs that represent your digital credentials.
+This guide builds upon our [Rust TAS Flow Guide](/guides/rust/how-to-create-digital-credentials) where you learned the fundamentals of creating credentials, schemas, and attestations using the Trezoa Attestation Service. In this Part 2, we'll extend your existing trezoa to create **tokenized attestations** - NFTs that represent your digital credentials.
 
 Tokenized credentials offer several advantages over standard attestations:
 
@@ -40,9 +40,9 @@ Tokenized attestations leverage TPL Token 2022's advanced features to create sec
     * **Permanent Delegate** - TAS program maintains control over tokens
     * **Mint Close Authority** - TAS program maintains ability to burn the token mint
 
-## Project Extension
+## Trezoa Extension
 
-This project builds on the *SasDemo* struct from the [TAS Rust Workflow Guide](/guides/rust/how-to-create-digital-credentials). You will need to start with that existing code or fork it from the [GitHub Examples Repository](https://github.com/trezoa-foundation/trezoa-attestation-service/tree/master/examples/rust/attestation-flow-guide/standard-demo).
+This trezoa builds on the *SasDemo* struct from the [TAS Rust Workflow Guide](/guides/rust/how-to-create-digital-credentials). You will need to start with that existing code or fork it from the [GitHub Examples Repository](https://github.com/trezoa-foundation/trezoa-attestation-service/tree/master/examples/rust/attestation-flow-guide/standard-demo).
 
 ### Update Dependencies
 
